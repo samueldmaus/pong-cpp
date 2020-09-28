@@ -57,11 +57,13 @@ int main()
 		{
 			ball.hitBottom();
 			lives--;
+			score = 0;
 			// check for zero lives and reset game if true
 			if (lives < 1)
 			{
 				score = 0;
 				lives = 3;
+				level = 1;
 			}
 		}
 		if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth)
@@ -71,6 +73,12 @@ int main()
 		if (ball.getPosition().intersects(bat.getPosition()))
 		{
 			ball.reboundBatOrTop();
+			score++;
+			if (score > 2)
+			{
+				score = 0;
+				level++;
+			}
 		}
 		ball.update();
 		bat.update();
