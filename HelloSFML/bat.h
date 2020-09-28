@@ -3,6 +3,8 @@
 
 using namespace sf;
 
+
+// creating Bat class - 
 class Bat
 {
 private:
