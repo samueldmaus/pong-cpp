@@ -35,5 +35,5 @@ void Bat::moveRight() {
 // setting the new bat position
 void Bat::update()
 {
-	batShape.setPosition(position)
+	batShape.setPosition(position);
 }

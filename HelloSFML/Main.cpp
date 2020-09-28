@@ -68,5 +68,16 @@ int main()
 		{
 			ball.reboundBatOrTop();
 		}
+		ball.update();
+		bat.update();
+		std::stringstream ss;
+		ss << "Score:" << score << "   Lives:" << lives;
+		hud.setString(ss.str());
+		window.clear(Color(36, 128, 182, 255));
+		window.draw(bat.getShape());
+		window.draw(ball.getShape());
+		window.draw(hud);
+		window.display();
 	}
+	return 0;
 }
