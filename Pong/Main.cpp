@@ -14,6 +14,7 @@ int main()
 	RenderWindow window(VideoMode(windowWidth, windowHeight), "PONG");
 	int score = 0;
 	int lives = 3;
+	int level = 1;
 	Bat bat(windowWidth / 2, windowHeight - 20);
 	Ball ball(windowWidth / 2, 1);
 	Text hud;
@@ -74,7 +75,7 @@ int main()
 		ball.update();
 		bat.update();
 		std::stringstream ss;
-		ss << "Score:" << score << "   Lives:" << lives;
+		ss << "Level:" << level << "    Score:" << score << "   Lives:" << lives;
 		hud.setString(ss.str());
 		window.clear(Color(36, 128, 182, 255));
 		window.draw(bat.getShape());
