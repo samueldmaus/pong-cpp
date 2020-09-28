@@ -36,12 +36,12 @@ int main()
 				window.close();
 			}
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Right))
+		if (Keyboard::isKeyPressed(Keyboard::Right) && bat.getPosition().left < window.getSize().x)
 		{
 			//move bat to the right
 			bat.moveRight();
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Left))
+		if (Keyboard::isKeyPressed(Keyboard::Left) && bat.getPosition().left > 0)
 		{
 			// move left
 			bat.moveLeft();
