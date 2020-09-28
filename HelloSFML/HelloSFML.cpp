@@ -1,20 +1,58 @@
-// HelloSFML.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
-#include <iostream>
+#include <SFML/Graphics.hpp>
 
+// This is the main C++ program- Duh!
+// It is where our game starts from
 int main()
 {
-    std::cout << "Hello World!\n";
+	// Make a window that is 800 by 200 pixels
+	// And has the title "Hello from SFML"
+	sf::RenderWindow window(sf::VideoMode(800, 200), "Hello from SFML");
+
+	// Create a "Text" object called "message". Weird but we will learn about objects soon
+	sf::Text message;
+
+	// We need to choose a font
+	sf::Font font;
+	font.loadFromFile("28 Days Later.ttf");
+
+	// Set the font to our message
+	message.setFont(font);
+
+	// Assign the actual message
+	message.setString("Hello world");
+
+	// Make it really big
+	message.setCharacterSize(100);
+
+	// Choose a color
+	message.setFillColor(sf::Color::White);
+
+	// This "while" loop goes round and round- perhaps forever
+	while (window.isOpen())
+	{
+		// The next 6 lines of code detect if the window is closed
+		// And then shuts down the program
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				// Someone closed the window- bye
+				window.close();
+		}
+
+		// Clear everything from the last run of the while loop
+		window.clear();
+
+		// Draw our message
+		window.draw(message);
+
+		// Draw our game scene here
+		// Just a message for now
+
+		// Show everything we just drew
+		window.display();
+	}// This is the end of the "while" loop
+
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
