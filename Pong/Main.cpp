@@ -18,7 +18,7 @@ int main()
 	Ball ball(windowWidth / 2, 1);
 	Text hud;
 	Font font;
-	font.loadFromFile("game_over.tff");
+	font.loadFromFile("game_over.ttf");
 	hud.setFont(font);
 	hud.setCharacterSize(75);
 	hud.setFillColor(sf::Color::White);
