@@ -18,7 +18,7 @@ int main()
 	Ball ball(windowWidth / 2, 1);
 	Text hud;
 	Font font;
-	font.loadFromFile("game-over.tff");
+	font.loadFromFile("game_over.tff");
 	hud.setFont(font);
 	hud.setCharacterSize(75);
 	hud.setFillColor(sf::Color::White);
@@ -48,6 +48,9 @@ int main()
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			window.close();
+		}
+		if (ball.getPosition().top < 0) {
+			ball.reboundBatOrTop();
 		}
 		if (ball.getPosition().top > windowHeight)
 		{
