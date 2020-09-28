@@ -8,7 +8,7 @@ using namespace sf;
 class Ball
 {
 private:
-	Vector2f postion;
+	Vector2f position;
 	RectangleShape ballShape;
 	float xVelocity = .2f;
 	float yVelocity = .2f;
