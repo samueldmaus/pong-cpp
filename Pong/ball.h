@@ -7,12 +7,11 @@ using namespace sf;
 // creating Ball class
 class Ball
 {
-private:
+public:
 	Vector2f position;
 	RectangleShape ballShape;
 	float xVelocity = .2f;
 	float yVelocity = .2f;
-public:
 	Ball(float startX, float startY);
 	FloatRect getPosition();
 	RectangleShape getShape();

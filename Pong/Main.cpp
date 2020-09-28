@@ -36,7 +36,7 @@ int main()
 				window.close();
 			}
 		}
-		if (Keyboard::isKeyPressed(Keyboard::Right) && bat.getPosition().left < window.getSize().x)
+		if (Keyboard::isKeyPressed(Keyboard::Right) && bat.getPosition().left < (window.getSize().x - bat.getPosition().width))
 		{
 			//move bat to the right
 			bat.moveRight();

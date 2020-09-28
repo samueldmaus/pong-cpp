@@ -7,11 +7,10 @@ using namespace sf;
 // creating Bat class - 
 class Bat
 {
-private:
+public:
 	Vector2f position;
 	RectangleShape batShape;
 	float batSpeed = .3f;
-public:
 	Bat(float startX, float startY);
 	FloatRect getPosition();
 	RectangleShape getShape();
