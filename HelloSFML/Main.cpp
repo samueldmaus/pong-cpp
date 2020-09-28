@@ -22,4 +22,18 @@ int main()
 	hud.setFont(font);
 	hud.setCharacterSize(75);
 	hud.setFillColor(sf::Color::White);
+
+	//controling when the game is running
+	while (window.isOpen())
+	{
+		// handles the player input
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+			{
+				window.close()
+					;
+			}
+		}
+	}
 }
