@@ -23,17 +23,50 @@ int main()
 	hud.setCharacterSize(75);
 	hud.setFillColor(sf::Color::White);
 
-	//controling when the game is running
+	//control the bat when the game is running
 	while (window.isOpen())
 	{
+		Event event;
 		// handles the player input
 		while (window.pollEvent(event))
 		{
 			if (event.type == Event::Closed)
 			{
-				window.close()
-					;
+				window.close();
 			}
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Right))
+		{
+			//move bat to the right
+			bat.moveRight();
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Left))
+		{
+			// move left
+			bat.moveLeft();
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Escape))
+		{
+			window.close();
+		}
+		if (ball.getPosition().top > windowHeight)
+		{
+			ball.hitBottom();
+			lives--;
+			// check for zero lives and reset game if true
+			if (lives < 1)
+			{
+				score = 0;
+				lives = 3;
+			}
+		}
+		if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth)
+		{
+			ball.reboundSides();
+		}
+		if (ball.getPosition().intersects(bat.getPosition()))
+		{
+			ball.reboundBatOrTop();
 		}
 	}
 }
