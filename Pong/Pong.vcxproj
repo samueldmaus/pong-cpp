@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="bat.h" />
+    <ClInclude Include="item.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

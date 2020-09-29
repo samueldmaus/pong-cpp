@@ -1,20 +1,41 @@
 #include "ball.h"
 #include "bat.h"
+#include "item.h"
 #include <sstream>
 #include <cstdlib>
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
 
+int gameLives = 3;
+int gameScore = 0;
+int gameLevel = 0;
+int Item::getLives()
+{
+	gameLives = Item::lives;
+	return gameLevel;
+}
+int Item::subtractLife()
+{
+	return Item::lives--;
+}
+int Item::addScore()
+{
+	return Item::score;
+}
+int Item::getScore()
+{
+	gameScore = Item::score;
+	return gameScore;
+}
+
 int main()
 {
 	// creates window to view the game
+
 	int windowWidth = 1024;
 	int windowHeight = 768;
 	RenderWindow window(VideoMode(windowWidth, windowHeight), "PONG");
-	int score = 0;
-	int lives = 3;
-	int level = 1;
 	Bat bat(windowWidth / 2, windowHeight - 20);
 	Ball ball(windowWidth / 2, 1);
 	Text hud;
@@ -56,15 +77,15 @@ int main()
 		if (ball.getPosition().top > windowHeight)
 		{
 			ball.hitBottom();
-			lives--;
-			score = 0;
+			int subtractLife();
+			int getLives();
 			// check for zero lives and reset game if true
-			if (lives < 1)
+			/*if (gameLives < 1)
 			{
-				score = 0;
-				lives = 3;
+				gameScore = 0;
+				gameLives = 3;
 				level = 1;
-			}
+			}*/
 		}
 		if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth)
 		{
@@ -73,17 +94,18 @@ int main()
 		if (ball.getPosition().intersects(bat.getPosition()))
 		{
 			ball.reboundBatOrTop();
-			score++;
-			if (score > 2)
-			{
-				score = 0;
-				level++;
-			}
+			int addScore();
+			int getScore();
+			//if (score > 2)
+			//{
+			//	score = 0;
+			//	level++;
+			//}
 		}
 		ball.update();
 		bat.update();
 		std::stringstream ss;
-		ss << "Level:" << level << "    Score:" << score << "   Lives:" << lives;
+		ss << "Level:" << gameLevel << "    Score:" << gameScore << "   Lives:" << gameLives;
 		hud.setString(ss.str());
 		window.clear(Color(36, 128, 182, 255));
 		window.draw(bat.getShape());
