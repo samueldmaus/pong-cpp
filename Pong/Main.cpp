@@ -84,13 +84,15 @@ int main()
 			{
 				score = 0;
 				level++;
-				if (level > 2)
+				if (level == 3)
 				{
 					bat.batShape.setSize(sf::Vector2f(125, 10));
+					ball.xVelocity = .3f;
 				}
-				else if (level > 5)
+				else if (level == 5)
 				{
 					bat.batShape.setSize(sf::Vector2f(75, 10));
+					ball.xVelocity = .4f;
 				}
 
 			}

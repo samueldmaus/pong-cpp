@@ -10,8 +10,8 @@ class Ball
 public:
 	Vector2f position;
 	RectangleShape ballShape;
-	float xVelocity = .1f;
-	float yVelocity = .1f;
+	float xVelocity = .2f;
+	float yVelocity = .2f;
 	Ball(float startX, float startY);
 	FloatRect getPosition();
 	RectangleShape getShape();
