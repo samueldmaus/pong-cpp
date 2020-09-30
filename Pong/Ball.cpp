@@ -39,6 +39,7 @@ void Ball::hitBottom()
 {
 	position.y = 1;
 	position.x = 500;
+
 }
 
 void Ball::update()

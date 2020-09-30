@@ -1,33 +1,14 @@
 #include "ball.h"
 #include "bat.h"
-#include "item.h"
 #include <sstream>
 #include <cstdlib>
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
 
-int gameLives = 3;
-int gameScore = 0;
-int gameLevel = 0;
-int Item::getLives()
-{
-	gameLives = Item::lives;
-	return gameLevel;
-}
-int Item::subtractLife()
-{
-	return Item::lives--;
-}
-int Item::addScore()
-{
-	return Item::score;
-}
-int Item::getScore()
-{
-	gameScore = Item::score;
-	return gameScore;
-}
+int score = 0;
+int level = 1;
+int lives = 3;
 
 int main()
 {
@@ -57,35 +38,39 @@ int main()
 				window.close();
 			}
 		}
+		//move bat to right but not off the screen
 		if (Keyboard::isKeyPressed(Keyboard::Right) && bat.getPosition().left < (window.getSize().x - bat.getPosition().width))
 		{
 			//move bat to the right
 			bat.moveRight();
 		}
+		//move the bat to the left but not off the screen
 		if (Keyboard::isKeyPressed(Keyboard::Left) && bat.getPosition().left > 0)
 		{
 			// move left
 			bat.moveLeft();
 		}
+		//exit out of the game
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			window.close();
 		}
+
+
 		if (ball.getPosition().top < 0) {
 			ball.reboundBatOrTop();
 		}
 		if (ball.getPosition().top > windowHeight)
 		{
 			ball.hitBottom();
-			int subtractLife();
-			int getLives();
+			lives--;
 			// check for zero lives and reset game if true
-			/*if (gameLives < 1)
+			if (lives < 1)
 			{
-				gameScore = 0;
-				gameLives = 3;
+				score = 0;
+				lives = 3;
 				level = 1;
-			}*/
+			}
 		}
 		if (ball.getPosition().left < 0 || ball.getPosition().left + 10 > windowWidth)
 		{
@@ -94,18 +79,26 @@ int main()
 		if (ball.getPosition().intersects(bat.getPosition()))
 		{
 			ball.reboundBatOrTop();
-			int addScore();
-			int getScore();
-			//if (score > 2)
-			//{
-			//	score = 0;
-			//	level++;
-			//}
+			score++;
+			if (score > 2)
+			{
+				score = 0;
+				level++;
+				if (level > 2)
+				{
+					bat.batShape.setSize(sf::Vector2f(125, 10));
+				}
+				else if (level > 5)
+				{
+					bat.batShape.setSize(sf::Vector2f(75, 10));
+				}
+
+			}
 		}
 		ball.update();
 		bat.update();
 		std::stringstream ss;
-		ss << "Level:" << gameLevel << "    Score:" << gameScore << "   Lives:" << gameLives;
+		ss << "Level:" << level << "    Score:" << score << "   Lives:" << lives;
 		hud.setString(ss.str());
 		window.clear(Color(36, 128, 182, 255));
 		window.draw(bat.getShape());
